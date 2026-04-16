@@ -32,7 +32,7 @@
 		<!-- Instructors -->
 		<div class="flex items-center gap-2.5">
 			<span
-				class="border-border-subtle text-text-muted inline-flex size-[1.625rem] shrink-0 items-center justify-center rounded-md border bg-white/5"
+				class="border-border-subtle text-text-muted inline-flex size-6.5 shrink-0 items-center justify-center rounded-md border bg-white/5"
 			>
 				<Users size={14} />
 			</span>
@@ -41,5 +41,5 @@
 	</div>
 
 	<!-- Colored bottom bar -->
-	<div class={`h-[3px] w-full shrink-0 ${gradient}`}></div>
+	<div class={`h-0.75 w-full shrink-0 ${gradient}`}></div>
 </a>

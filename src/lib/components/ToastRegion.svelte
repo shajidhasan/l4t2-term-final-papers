@@ -21,13 +21,13 @@
 </script>
 
 <div
-	class="pointer-events-none fixed top-4 right-4 z-[120] flex w-[min(22rem,calc(100vw-2rem))] flex-col gap-2"
+	class="pointer-events-none fixed top-4 right-4 z-120 flex w-[min(22rem,calc(100vw-2rem))] flex-col gap-2"
 >
 	{#each $toaster as toast (toast.id)}
 		<div
 			in:fly={{ y: -12, duration: 200 }}
 			out:fade={{ duration: 150 }}
-			class={`pointer-events-auto flex items-center gap-2.5 rounded-[10px] border px-3.5 py-2.5 shadow-[0_8px_28px_rgba(0,0,0,0.5)] backdrop-blur-[16px] ${toneStyles[toast.tone]}`}
+			class={`pointer-events-auto flex items-center gap-2.5 rounded-[10px] border px-3.5 py-2.5 shadow-[0_8px_28px_rgba(0,0,0,0.5)] backdrop-blur-lg ${toneStyles[toast.tone]}`}
 		>
 			<div
 				class={`inline-flex size-7 shrink-0 items-center justify-center rounded-md ${iconStyles[toast.tone]}`}
