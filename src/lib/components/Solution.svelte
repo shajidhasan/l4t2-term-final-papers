@@ -48,25 +48,27 @@
 			class="ui-button ui-button-secondary rounded-md px-2.5 py-1.25 text-xs"
 		>
 			<Copy size={13} />
-			<span>Copy</span>
+			<span class="hidden sm:inline">Copy</span>
 		</button>
 		<button
 			class={`ui-button rounded-md border px-2.5 py-1.25 text-xs transition-colors duration-150 ${highlightButtonClass}`}
 			onclick={onHighlight}
 		>
 			<Highlighter size={13} />
-			{#if currentMark === undefined}
-				<span>Mark Yellow</span>
-			{:else if currentMark === 'Y'}
-				<span>Mark Green</span>
-			{:else}
-				<span>Unmark</span>
-			{/if}
+			<span class="hidden sm:inline">
+				{#if currentMark === undefined}
+					Mark Yellow
+				{:else if currentMark === 'Y'}
+					Mark Green
+				{:else}
+					Unmark
+				{/if}
+			</span>
 		</button>
 	</div>
 </div>
 
-<div class="rounded-[10px] border border-emerald-400/12 bg-emerald-400/5 p-4">
+<div class="rounded-lg border border-emerald-400/12 bg-emerald-400/5 px-4">
 	<div class="solution-prose">
 		<RenderMarkdown markdown={question.solution} />
 	</div>
