@@ -32,7 +32,7 @@
 <div class="border-border-subtle bg-surface border-b last:border-b-0">
 	<button
 		type="button"
-		class={`flex w-full cursor-pointer items-start gap-3 bg-transparent px-4 py-3 text-left transition-colors duration-[120ms] hover:bg-white/2 ${summaryClass}`}
+		class={`flex w-full cursor-pointer items-start gap-3 bg-transparent px-4 py-3 text-left transition-colors duration-120 hover:bg-white/2 ${summaryClass}`}
 		aria-expanded={isOpen}
 		onclick={() => (isOpen = !isOpen)}
 	>
@@ -42,7 +42,7 @@
 		</div>
 		<!-- Toggle icon aligned to the right -->
 		<span
-			class={`text-text-muted mt-[0.175rem] hidden size-[1.375rem] shrink-0 items-center justify-center rounded border border-white/9 bg-white/6 transition-all duration-[120ms] sm:inline-flex ${
+			class={`text-text-muted mt-[0.175rem] hidden size-5.5 shrink-0 items-center justify-center rounded border border-white/9 bg-white/6 transition-all duration-120 sm:inline-flex ${
 				isOpen ? 'text-text-secondary bg-white/10' : ''
 			}`}
 		>

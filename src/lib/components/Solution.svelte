@@ -10,8 +10,6 @@
 
 	const { question }: { question: Question } = $props();
 	let currentMark = $derived(marked.current[question.id]);
-	let isYellowState = $derived(!currentMark || currentMark === 'Y');
-	let isGreenState = $derived(currentMark === 'G');
 	let highlightButtonClass = $derived.by(() => {
 		if (currentMark === 'G') {
 			return 'bg-emerald-400/12 text-mark-green border-emerald-400/30 hover:bg-emerald-400/20';
@@ -47,13 +45,13 @@
 	<div class="flex flex-wrap gap-1.5">
 		<button
 			onclick={onCopy}
-			class="ui-button ui-button-secondary rounded-md px-2.5 py-[0.3125rem] text-xs"
+			class="ui-button ui-button-secondary rounded-md px-2.5 py-1.25 text-xs"
 		>
 			<Copy size={13} />
 			<span>Copy</span>
 		</button>
 		<button
-			class={`ui-button rounded-md border px-2.5 py-[0.3125rem] text-xs transition-colors duration-150 ${highlightButtonClass}`}
+			class={`ui-button rounded-md border px-2.5 py-1.25 text-xs transition-colors duration-150 ${highlightButtonClass}`}
 			onclick={onHighlight}
 		>
 			<Highlighter size={13} />
