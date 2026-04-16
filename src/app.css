@@ -1,0 +1,231 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+@plugin '@tailwindcss/forms';
+
+@font-face {
+	font-family: 'Inter';
+	src: url('$lib/assets/fonts/InterVariable.woff2') format('woff2');
+	font-display: swap;
+	font-weight: 100 900;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Inter Fallback';
+	src: local('Arial');
+	ascent-override: 89.79%;
+	descent-override: 22.36%;
+	line-gap-override: 0%;
+	size-adjust: 107.89%;
+}
+
+@theme {
+	--font-sans: 'Inter', 'Inter Fallback', system-ui, sans-serif;
+
+	/* Dark theme palette */
+	--color-base: #0f0f11;
+	--color-surface: #1a1a1e;
+	--color-card: #212126;
+	--color-card-hover: #27272d;
+	--color-panel: #18181c;
+	--color-border-subtle: rgba(255, 255, 255, 0.08);
+	--color-border-muted: rgba(255, 255, 255, 0.12);
+	--color-text-primary: #f1f1f3;
+	--color-text-secondary: #a1a1aa;
+	--color-text-muted: #6b6b75;
+
+	/* Accent colors used in components */
+	--color-mark-green: #34d399;
+	--color-mark-yellow: #fbbf24;
+	--color-heart: #ee4444;
+}
+
+@layer base {
+	html {
+		@apply bg-base overflow-y-scroll;
+		font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+	}
+
+	@supports (scrollbar-gutter: stable) {
+		html {
+			@apply overflow-y-auto;
+			scrollbar-gutter: stable;
+		}
+	}
+
+	body {
+		@apply text-text-primary bg-base flex min-h-screen flex-col bg-fixed font-sans;
+		background-image:
+			radial-gradient(ellipse 60% 40% at 10% 5%, rgba(99, 102, 241, 0.06) 0%, transparent 60%),
+			radial-gradient(ellipse 50% 40% at 90% 0%, rgba(14, 165, 233, 0.05) 0%, transparent 55%),
+			radial-gradient(ellipse 40% 30% at 80% 80%, rgba(217, 70, 239, 0.04) 0%, transparent 50%);
+	}
+
+	a {
+		@apply transition-colors duration-150 ease-in-out;
+	}
+
+	button {
+		@apply cursor-pointer;
+	}
+
+	table {
+		@apply block max-w-full overflow-x-auto;
+	}
+
+	th,
+	td {
+		@apply border border-white/10 px-3 py-2;
+	}
+
+	th {
+		@apply bg-white/4 font-medium;
+	}
+
+	code:not(pre code) {
+		@apply rounded-md bg-white/8 px-1.5 py-0.5 text-violet-300;
+		font-size: 0.92em;
+	}
+
+	/* Override katex colors for dark mode */
+	.katex {
+		@apply text-text-primary;
+	}
+}
+
+@layer components {
+	/* ── Layout ─────────────────────────────────────────────── */
+	.page-shell {
+		@apply mx-auto w-full max-w-7xl px-4 sm:px-6;
+	}
+
+	/* ── Typography ──────────────────────────────────────────── */
+	.page-title {
+		@apply text-text-primary text-4xl leading-none font-medium tracking-tight md:text-6xl;
+		letter-spacing: -0.03em;
+	}
+
+	.page-subtitle {
+		@apply text-text-secondary max-w-[38rem] text-[0.9375rem] leading-relaxed;
+	}
+
+	/* ── Panels ──────────────────────────────────────────────── */
+	.glass-panel {
+		@apply bg-card border-border-subtle rounded-2xl border;
+		box-shadow:
+			0 1px 3px rgba(0, 0, 0, 0.3),
+			0 8px 32px rgba(0, 0, 0, 0.2);
+	}
+
+	.soft-panel {
+		@apply bg-panel border-border-subtle rounded-[14px] border;
+	}
+
+	.paper-panel {
+		@apply bg-card border-border-subtle rounded-[14px] border shadow-md;
+	}
+
+	/* ── Pills & Chips ───────────────────────────────────────── */
+	.ui-pill {
+		@apply inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs leading-snug font-normal whitespace-nowrap;
+		letter-spacing: 0.01em;
+	}
+
+	.ui-pill-neutral {
+		@apply text-text-secondary border-border-muted border bg-white/7;
+	}
+
+	.ui-chip {
+		@apply border-border-muted text-text-secondary inline-flex items-center rounded-full border bg-white/5 px-3 py-1 text-xs font-medium transition-all duration-150 ease-in-out;
+	}
+
+	.ui-chip:hover {
+		@apply text-text-primary border-white/22;
+	}
+
+	/* ── Buttons ─────────────────────────────────────────────── */
+	.ui-button {
+		@apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-[0.8125rem] font-medium transition-all duration-150 ease-in-out outline-none;
+	}
+
+	.ui-button:focus-visible {
+		@apply ring-2 ring-indigo-500/70 ring-offset-2;
+	}
+
+	.ui-button-primary {
+		@apply bg-white/90 text-base;
+		box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+	}
+
+	.ui-button-primary:hover {
+		@apply bg-white;
+	}
+
+	.ui-button-secondary {
+		@apply text-text-secondary border-border-muted border bg-white/6;
+	}
+
+	.ui-button-secondary:hover {
+		@apply text-text-primary border-white/20 bg-white/10;
+	}
+
+	/* ── Tabs ────────────────────────────────────────────────── */
+	.ui-tab {
+		@apply inline-flex cursor-pointer items-center rounded-lg border border-transparent px-4 py-[0.4375rem] text-sm font-medium transition-all duration-150 ease-in-out;
+	}
+
+	.ui-tab-idle {
+		@apply border-border-muted text-text-secondary bg-white/5;
+	}
+
+	.ui-tab-idle:hover {
+		@apply text-text-primary border-white/20 bg-white/9;
+	}
+
+	.ui-tab-active {
+		@apply border-transparent text-white;
+		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+	}
+
+	/* ── Question Cards ──────────────────────────────────────── */
+	.question-shell {
+		@apply bg-surface border-border-subtle rounded-[10px] border transition-colors duration-150 ease-in-out;
+	}
+
+	.question-shell:hover {
+		@apply border-border-muted;
+	}
+
+	.question-summary {
+		@apply flex w-full items-start gap-4 px-4 py-3.5 text-left sm:px-[1.125rem];
+	}
+
+	.question-number {
+		@apply text-text-secondary inline-flex min-w-10 items-center justify-center rounded-md border border-white/10 bg-white/6 px-2 py-[0.1875rem] text-xs font-medium;
+	}
+
+	/* ── Solution Prose ──────────────────────────────────────── */
+	.solution-prose {
+		@apply prose prose-invert prose-sm max-w-none;
+		@apply prose-headings:font-medium prose-headings:text-zinc-100;
+		@apply prose-p:text-zinc-300 prose-li:text-zinc-300;
+		@apply prose-strong:text-zinc-100;
+		@apply prose-a:text-sky-400;
+		@apply prose-code:text-violet-300;
+	}
+
+	/* ── Search Highlight ────────────────────────────────────── */
+	.search-highlight {
+		@apply rounded bg-amber-400/25 px-1 py-px font-medium text-amber-400;
+	}
+
+	/* ── Hero header banner ──────────────────────────────────── */
+	.hero-banner {
+		@apply border-border-subtle rounded-2xl border;
+		background: linear-gradient(
+			135deg,
+			rgba(255, 255, 255, 0.04) 0%,
+			rgba(255, 255, 255, 0.015) 100%
+		);
+	}
+}
