@@ -15,7 +15,7 @@
 			>
 		</span>
 		<a
-			href="https://github.com/shajidhasan/l4t1-term-final-papers"
+			href="https://github.com/shajidhasan/l4t2-term-final-papers"
 			target="_blank"
 			class="text-text-secondary hover:text-text-primary inline-flex items-center gap-1.5 font-medium transition-colors duration-150"
 		>
