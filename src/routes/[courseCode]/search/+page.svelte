@@ -67,7 +67,7 @@
 	<div class="page-shell relative min-h-[calc(100vh-10rem)] pt-6 pb-12">
 		<!-- Search bar — centered, animates up on type -->
 		<div
-			class="absolute left-1/2 z-20 w-full max-w-[42rem] -translate-x-1/2 px-4 transition-[top] duration-400 ease-[cubic-bezier(0.4,0,0.2,1)]"
+			class="absolute left-1/2 z-20 w-full max-w-4xl -translate-x-1/2 px-4 transition-[top] duration-400 ease-in-out"
 			class:top-[42%]={!top}
 			class:top-6={top}
 		>
@@ -107,7 +107,7 @@
 		</div>
 
 		{#if top}
-			<section class="mt-28" in:fade out:fade>
+			<section class="mt-28 max-w-4xl mx-auto" in:fade out:fade>
 				<p class="text-text-muted mb-3 text-[0.8125rem]">
 					{searchResults.length} matching question{searchResults.length === 1 ? '' : 's'}
 				</p>
