@@ -31,14 +31,37 @@
 		return str.replace(/<[^>]*>/g, '');
 	};
 
+	const normalizeCurrencyWrappedInMath = (text: string): string => {
+		// Convert common currency wrappers like $\$500$ into plain escaped currency (\$500).
+		return text.replace(/(?<!\\)\$\\\$([0-9][0-9,]*(?:\.[0-9]+)?)\$(?!\$)/g, (_, amount) => {
+			return `\\$${amount}`;
+		});
+	};
+
+	const shouldRenderInlineDollarMath = (equation: string): boolean => {
+		const cleanEquation = stripHtmlTags(equation.trim());
+
+		if (!cleanEquation) {
+			return false;
+		}
+
+		// Escaped dollar signs indicate currency text, not inline math.
+		if (/\\\$/.test(cleanEquation)) {
+			return false;
+		}
+
+		return true;
+	};
+
 	const renderEquations = (markdown: string): string => {
-		// More specific regex patterns with non-greedy matching
+		// Normalize currency-heavy text before applying KaTeX delimiters.
+		let html = normalizeCurrencyWrappedInMath(markdown);
+
+		// Regex patterns with non-greedy matching and stricter inline boundaries.
 		const dollarBlockRegex = /(?<!\\)\$\$((?:\\.|[\s\S])*?)(?<!\\)\$\$/g;
-		const dollarInlineRegex = /(?<!\\)\$((?:\\.|[^$\n])+?)(?<!\\)\$/g;
+		const dollarInlineRegex = /(?<!\\)\$(?=\S)((?:\\.|[^$\n])*?\S)(?<!\\)\$/g;
 		const latexBlockRegex = /\\\[([\s\S]*?)\\\]/g;
 		const latexInlineRegex = /\\\(([\s\S]*?)\\\)/g;
-
-		let html = markdown;
 
 		html = html.replace(latexBlockRegex, (match, equation) => {
 			try {
@@ -71,6 +94,10 @@
 		});
 
 		html = html.replace(dollarInlineRegex, (match, equation) => {
+			if (!shouldRenderInlineDollarMath(equation)) {
+				return match;
+			}
+
 			try {
 				const cleanEquation = stripHtmlTags(equation.trim());
 				return katex.renderToString(cleanEquation, { displayMode: false, strict: false });
