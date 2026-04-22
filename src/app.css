@@ -37,6 +37,9 @@
 	/* Accent colors used in components */
 	--color-mark-green: #34d399;
 	--color-mark-yellow: #fbbf24;
+	--color-mark-red: #f87171;
+	--color-mark-blue: #60a5fa;
+	--color-mark-purple: #c084fc;
 	--color-heart: #ee4444;
 }
 

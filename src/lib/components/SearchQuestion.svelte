@@ -4,10 +4,12 @@
 	import type { SearchResult } from 'minisearch';
 
 	import Solution from '$lib/components/Solution.svelte';
+	import { MARK_META } from '$lib/marks';
 	import { marked } from '$lib/states';
 	import type { Question } from '$lib/types';
 
 	import Disclosure from '$lib/components/ui/Disclosure.svelte';
+	import QuestionFigure from './QuestionFigure.svelte';
 	import RenderMarkdown from './RenderMarkdown.svelte';
 	import { getGradientForString } from '$lib/utilities';
 
@@ -24,13 +26,7 @@
 	const batch = $derived(question.id.split('-')[1]);
 	const number = $derived(question.id.split('-')[2]);
 	const letter = $derived(question.id.split('-')[3]);
-	let badgeClass = $derived.by(() =>
-		mark === 'G'
-			? 'bg-emerald-400/18 border-emerald-400/35 text-mark-green'
-			: mark === 'Y'
-				? 'bg-amber-400/18 border-amber-400/35 text-mark-yellow'
-				: ''
-	);
+	let badgeClass = $derived(mark ? MARK_META[mark].badgeStrongClass : '');
 </script>
 
 <div transition:fade={{ duration: 300 }}>
@@ -45,6 +41,9 @@
 				<div class="min-w-0 flex-1">
 					<div class="solution-prose text-sm leading-relaxed">
 						<RenderMarkdown markdown={highlighted} figureFilter />
+						{#if question.svg}
+							<QuestionFigure svg={question.svg} />
+						{/if}
 					</div>
 					<div class="mt-2.5">
 						<span class={`ui-pill ${getGradientForString(batch)}`}>'{batch} Batch</span>

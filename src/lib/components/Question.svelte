@@ -1,20 +1,16 @@
 <script lang="ts">
 	import Solution from '$lib/components/Solution.svelte';
+	import { MARK_META, UNMARKED_BADGE } from '$lib/marks';
 	import { marked } from '$lib/states';
 	import type { Question } from '$lib/types';
 
 	import Disclosure from './ui/Disclosure.svelte';
+	import QuestionFigure from './QuestionFigure.svelte';
 	import RenderMarkdown from './RenderMarkdown.svelte';
 
 	const { question }: { question: Question } = $props();
 	let mark = $derived(marked.current[question.id]);
-	let badgeClass = $derived(
-		mark === 'G'
-			? 'bg-emerald-400/15 border-emerald-400/30 text-mark-green'
-			: mark === 'Y'
-				? 'bg-amber-400/15 border-amber-400/30 text-mark-yellow'
-				: 'text-text-muted border-white/9 bg-white/4'
-	);
+	let badgeClass = $derived(mark ? MARK_META[mark].badgeClass : UNMARKED_BADGE);
 </script>
 
 <Disclosure>
@@ -32,6 +28,9 @@
 			</span>
 			<div class="q-text solution-prose min-w-0 flex-1 text-sm leading-relaxed">
 				<RenderMarkdown markdown={question.text} figureFilter />
+				{#if question.svg}
+					<QuestionFigure svg={question.svg} />
+				{/if}
 			</div>
 		</div>
 	{/snippet}

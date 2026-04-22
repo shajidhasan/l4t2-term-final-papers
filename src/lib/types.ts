@@ -4,6 +4,7 @@ export type Question = {
 	id: string;
 	topic: string;
 	solution: string;
+	svg?: string;
 };
 
 export type QuestionSet = {
