@@ -3,17 +3,13 @@
 
 	import Question from '$lib/components/Question.svelte';
 	import { papersCollection } from '$lib/papers';
-	import { getGradientForString } from '$lib/utilities';
+	import { getGradientForString, slugify } from '$lib/utilities';
 
 	let { batch, courseCode }: { batch: string; courseCode: string } = $props();
 
 	const coursePapers = $derived(papersCollection[courseCode] || []);
 	const paper = $derived(coursePapers.find((paper) => paper.batch === batch)?.paper);
 	const sectionNames = ['A', 'B'];
-
-	const slugify = (topic: string | undefined) => {
-		return (topic ?? '').replaceAll(' ', '_').toLowerCase();
-	};
 </script>
 
 <div class="grid items-start gap-8 lg:grid-cols-2">

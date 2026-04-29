@@ -10,16 +10,16 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import Question from '$lib/components/TopicQuestion.svelte';
 	import { courses } from '$lib/courses';
-	import { getGradientForString } from '$lib/utilities';
+	import { getGradientForString, slugify } from '$lib/utilities';
 
-	import { deslugified, getGroupsByTopic, getSetsByTopic } from './utils';
+	import { getGroupsByTopic, getSetsByTopic, getTopicNameFromSlug } from './utils';
 
-	const topic = $derived(deslugified(page.params.topic as string));
-	const courseCode = $derived(deslugified(page.params.courseCode as string));
+	const slug = $derived(page.params.topic as string);
+	const courseCode = $derived(page.params.courseCode as string);
 	const course = $derived(courses.find((c) => c.code === courseCode));
-	const sets = $derived(getSetsByTopic(topic, courseCode));
-	const slugify = (t: string | undefined) => (t ?? '').replaceAll(' ', '_').toLowerCase();
-	const groups = $derived(getGroupsByTopic(topic, courseCode));
+	const sets = $derived(getSetsByTopic(slug, courseCode));
+	const groups = $derived(getGroupsByTopic(slug, courseCode));
+	const topic = $derived(getTopicNameFromSlug(slug, courseCode) ?? slug.replaceAll('_', ' '));
 
 	let tab: 'sets' | 'questions' = $state('sets');
 </script>

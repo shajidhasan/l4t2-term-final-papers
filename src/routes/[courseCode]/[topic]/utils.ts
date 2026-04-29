@@ -1,24 +1,26 @@
 import type { Question, QuestionSet } from '$lib/types';
 
 import { papersCollection } from '$lib/papers';
+import { slugify } from '$lib/utilities';
 
-export const deslugified = (s: string): string => {
-	if (s === 'cnc_programming_&_technology') return 'CNC Programming & Technology';
-	if (s === 'cpm') return 'CPM';
-	if (s === 'ppc') return 'PPC';
-	if (s === 'scm') return 'SCM';
-	if (s === 'mrp') return 'MRP';
-	if (s === 'pert') return 'PERT';
-	if (s === 'mps') return 'MPS';
-	const result = s
-		.split('_')
-		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-		.join(' ');
+export const getTopicNameFromSlug = (slug: string, courseCode: string): string | undefined => {
+	const papers = papersCollection[courseCode];
+	if (!papers) return undefined;
 
-	return result;
+	for (const paper of papers) {
+		for (const section of paper.paper.sections) {
+			for (const set of section.sets) {
+				for (const question of set.questions) {
+					if (slugify(question.topic) === slug) return question.topic;
+				}
+			}
+		}
+	}
+
+	return undefined;
 };
 
-export const getGroupsByTopic = (topic: string, courseCode: string) => {
+export const getGroupsByTopic = (slug: string, courseCode: string) => {
 	const questions: Question[] = [];
 	const papers = papersCollection[courseCode];
 
@@ -28,7 +30,7 @@ export const getGroupsByTopic = (topic: string, courseCode: string) => {
 		paper.paper.sections.forEach((section) => {
 			section.sets.forEach((set) => {
 				set.questions.forEach((question) => {
-					if (question.topic === topic) {
+					if (slugify(question.topic) === slug) {
 						questions.push(question);
 					}
 				});
@@ -58,7 +60,7 @@ export const getGroupsByTopic = (topic: string, courseCode: string) => {
 	return groups;
 };
 
-export const getSetsByTopic = (topic: string, courseCode: string) => {
+export const getSetsByTopic = (slug: string, courseCode: string) => {
 	const setList: string[] = [];
 	const papers = papersCollection[courseCode];
 
@@ -68,7 +70,7 @@ export const getSetsByTopic = (topic: string, courseCode: string) => {
 		paper.paper.sections.forEach((section) => {
 			section.sets.forEach((set) => {
 				set.questions.forEach((question) => {
-					if (question.topic === topic) {
+					if (slugify(question.topic) === slug) {
 						const setId = question.id.substring(0, 10);
 						if (!setList.includes(setId)) {
 							setList.push(setId);

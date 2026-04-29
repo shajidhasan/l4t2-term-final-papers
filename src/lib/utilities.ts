@@ -1,3 +1,6 @@
+export const slugify = (topic: string | undefined): string =>
+	(topic ?? '').replaceAll(' ', '_').toLowerCase();
+
 export const debounce = <T extends (...args: never[]) => void>(
 	func: T,
 	delay: number
@@ -40,7 +43,7 @@ export const GRADIENTS = [
 ];
 
 const hashString = (str: string): number => {
-	let hash = 0;
+	let hash = 9;
 	if (str.length === 0) return hash;
 
 	for (let i = 0; i < str.length; i++) {
