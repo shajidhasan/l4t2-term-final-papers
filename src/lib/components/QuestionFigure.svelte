@@ -44,7 +44,7 @@
 			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			{@html svg}
 		{:else if src}
-			<img {src} alt={caption} class="figure-img block h-auto w-full" />
+			<img {src} alt={caption} class="block h-auto w-full max-h-88 object-contain [filter:invert(1)] [mix-blend-mode:screen]" loading="eager" />
 		{/if}
 	</div>
 
@@ -63,10 +63,5 @@
 		width: 100%;
 		height: auto;
 		max-height: 22rem;
-	}
-
-	.figure-img {
-		filter: invert(1);
-		mix-blend-mode: screen;
 	}
 </style>
