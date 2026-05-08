@@ -1,8 +1,26 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import { fly } from 'svelte/transition';
+	import { cubicOut } from 'svelte/easing';
 	import CourseCard from '$lib/components/CourseCard.svelte';
 	import Footer from '$lib/components/Footer.svelte';
+	import TestimonialModal from '$lib/components/TestimonialModal.svelte';
 
+	import ArrowRight from '@lucide/svelte/icons/arrow-right';
+
+	import { getTestimonialStatus } from '$lib/testimonial-state';
 	import { courses } from '$lib/courses';
+
+	let modalOpen = $state(false);
+	let showLeaveButton = $state(false);
+
+	onMount(() => {
+		const { submitted, dismissed } = getTestimonialStatus();
+		showLeaveButton = true;
+		if (!submitted && !dismissed && window.innerWidth >= 768) {
+			setTimeout(() => (modalOpen = true), 1500);
+		}
+	});
 </script>
 
 <svelte:head>
@@ -19,6 +37,23 @@
 		<header class="mb-10">
 			<h1 class="text-4xl font-medium tracking-tight text-white md:text-5xl">CUET ME · L4T2</h1>
 			<p class="text-text-muted mt-2 text-sm">Term final papers archive · From '19 to '15 batch</p>
+
+			<!-- CTA row -->
+			<div class="mt-5 flex flex-wrap items-center gap-3">
+				{#if showLeaveButton}
+					<button
+						in:fly={{ x: -16, duration: 320, easing: cubicOut }}
+						class="ui-button ui-button-primary"
+						onclick={() => (modalOpen = true)}
+					>
+						Leave a message
+					</button>
+				{/if}
+				<a href="/testimonials" class="ui-button ui-button-secondary">
+					View testimonials
+					<ArrowRight class="size-3.5" />
+				</a>
+			</div>
 		</header>
 
 		<!-- Courses grid -->
@@ -33,3 +68,5 @@
 
 	<Footer />
 </div>
+
+<TestimonialModal bind:open={modalOpen} />

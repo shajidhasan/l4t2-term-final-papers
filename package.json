@@ -48,7 +48,9 @@
 		]
 	},
 	"dependencies": {
+		"@fontsource/atma": "^5.2.7",
 		"@lucide/svelte": "^1.8.0",
+		"firebase": "^12.13.0",
 		"katex": "^0.16.45",
 		"markdown-it": "^14.1.1",
 		"minisearch": "^7.2.0",
