@@ -20,7 +20,7 @@ Object.entries(papersCollection).forEach((entry) => {
 
 const miniSearch = new MiniSearch({
 	fields: ['text'],
-	storeFields: ['text', 'courseCode', 'solution', 'marks', 'id']
+	storeFields: ['text', 'courseCode', 'solution', 'marks', 'id', 'svg', 'hasfigure']
 });
 
 miniSearch.addAll(questions);
