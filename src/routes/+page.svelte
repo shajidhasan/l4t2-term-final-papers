@@ -40,6 +40,10 @@
 
 			<!-- CTA row -->
 			<div class="mt-5 flex flex-wrap items-center gap-3">
+				<a href="/testimonials" class="ui-button ui-button-secondary">
+					View testimonials
+					<ArrowRight class="size-3.5" />
+				</a>
 				{#if showLeaveButton}
 					<button
 						in:fly={{ x: -16, duration: 320, easing: cubicOut }}
@@ -49,10 +53,6 @@
 						Leave a message
 					</button>
 				{/if}
-				<a href="/testimonials" class="ui-button ui-button-secondary">
-					View testimonials
-					<ArrowRight class="size-3.5" />
-				</a>
 			</div>
 		</header>
 
