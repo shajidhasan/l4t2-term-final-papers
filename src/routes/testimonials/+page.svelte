@@ -1,9 +1,13 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import '@fontsource/atma/400.css';
+	import ArrowLeft from '@lucide/svelte/icons/arrow-left';
 	import { fetchTestimonials, type Testimonial } from '$lib/testimonials';
-import TestimonialModal from '$lib/components/TestimonialModal.svelte';
+	import TestimonialModal from '$lib/components/TestimonialModal.svelte';
+	import FloatingAnchor from '$lib/components/FloatingAnchor.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 
 	let testimonials = $state<Testimonial[]>([]);
@@ -57,9 +61,6 @@ import TestimonialModal from '$lib/components/TestimonialModal.svelte';
 <div class="flex min-h-screen flex-col">
 	<main class="page-shell grow py-10 md:py-14">
 		<header class="mb-10">
-			<a href="/" class="text-text-muted hover:text-text-secondary mb-4 inline-flex items-center gap-1.5 text-sm transition-colors">
-				← Home
-			</a>
 			<h1 class="text-4xl font-medium tracking-tight text-white md:text-5xl">Testimonials</h1>
 			<p class="text-text-muted mt-2 text-sm">Messages from the '20 batch</p>
 			{#if showLeaveButton}
@@ -128,6 +129,11 @@ import TestimonialModal from '$lib/components/TestimonialModal.svelte';
 </div>
 
 <TestimonialModal bind:open={modalOpen} onsubmitted={loadTestimonials} />
+
+<FloatingAnchor onclick={() => goto(resolve('/'), { replaceState: true })}>
+	<ArrowLeft class="size-4" />
+	<span>Back</span>
+</FloatingAnchor>
 
 <style>
 	.crossfade-wrapper {
