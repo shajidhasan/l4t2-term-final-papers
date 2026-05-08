@@ -5,6 +5,7 @@ export type Question = {
 	topic: string;
 	solution: string;
 	svg?: string;
+	hasfigure?: boolean;
 };
 
 export type QuestionSet = {

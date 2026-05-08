@@ -25,7 +25,9 @@
 			<div class="q-text solution-prose min-w-0 flex-1 text-sm leading-relaxed">
 				<RenderMarkdown markdown={question.text} figureFilter />
 				{#if question.svg}
-					<QuestionFigure svg={question.svg} />
+					<QuestionFigure svg={question.svg} questionId={question.id} />
+				{:else if question.hasfigure}
+					<QuestionFigure src="/figures/{question.id}.png" questionId={question.id} />
 				{/if}
 			</div>
 		</div>

@@ -2,6 +2,12 @@ import type { Course } from '$lib/types';
 
 export const courses: Course[] = [
 	{
+		title: 'Mechatronics',
+		code: 'ME455',
+		credits: 3,
+		instructors: 'Dr. S. C. Banik, Dr. M. S. Rabbi'
+	},
+	{
 		title: 'Applied Thermodynamics',
 		code: 'ME411',
 		credits: 3,
