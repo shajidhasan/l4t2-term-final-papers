@@ -26,7 +26,7 @@
 				<RenderMarkdown markdown={question.text} figureFilter />
 				{#if question.svg}
 					<QuestionFigure svg={question.svg} questionId={question.id} />
-				{:else if question.hasfigure}
+				{:else if question.hasFigure}
 					<QuestionFigure src="/figures/{question.id}.png" questionId={question.id} />
 				{/if}
 			</div>

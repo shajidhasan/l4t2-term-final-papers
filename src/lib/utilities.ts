@@ -32,8 +32,8 @@ export const GRADIENTS = [
 	'from-cyan-500 to-blue-600',
 	'from-rose-500 to-pink-600',
 	'from-amber-500 to-orange-600',
-	'from-lime-500 to-green-600',
 	'from-fuchsia-600 to-pink-700',
+	'from-lime-600 to-green-600',
 	'from-sky-500 to-indigo-600',
 	'from-slate-600 to-gray-700',
 	'from-green-600 via-teal-600 to-blue-700',
@@ -43,7 +43,7 @@ export const GRADIENTS = [
 ];
 
 const hashString = (str: string): number => {
-	let hash = 33;
+	let hash = 50;
 	if (str.length === 0) return hash;
 
 	for (let i = 0; i < str.length; i++) {
