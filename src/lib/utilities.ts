@@ -17,24 +17,24 @@ export const debounce = <T extends (...args: never[]) => void>(
 };
 
 export const GRADIENTS = [
-	'from-green-500 to-teal-600',
+	'from-emerald-700 to-teal-800',
 	'from-blue-600 to-purple-700',
 	'from-red-500 to-pink-600',
 	'from-orange-500 to-red-600',
-	'from-green-500 to-teal-600',
+	'from-green-700 to-emerald-800',
 	'from-purple-600 to-indigo-700',
-	'from-teal-500 to-cyan-600',
-	'from-yellow-500 via-orange-500 to-red-600',
+	'from-teal-700 to-cyan-800',
+	'from-amber-700 via-orange-700 to-red-700',
 	'from-indigo-600 to-blue-700',
 	'from-pink-500 to-rose-600',
-	'from-emerald-500 to-green-600',
-	'from-violet-400 to-purple-800',
-	'from-cyan-500 to-blue-600',
+	'from-emerald-700 to-green-800',
+	'from-violet-600 to-purple-800',
+	'from-cyan-700 to-blue-800',
 	'from-rose-500 to-pink-600',
-	'from-amber-500 to-orange-600',
+	'from-amber-700 to-orange-800',
 	'from-fuchsia-600 to-pink-700',
-	'from-lime-600 to-green-600',
-	'from-sky-500 to-indigo-600',
+	'from-lime-700 to-green-800',
+	'from-sky-700 to-indigo-800',
 	'from-slate-600 to-gray-700',
 	'from-green-600 via-teal-600 to-blue-700',
 	'from-red-600 via-pink-600 to-purple-700',
@@ -43,7 +43,7 @@ export const GRADIENTS = [
 ];
 
 const hashString = (str: string): number => {
-	let hash = 50;
+	let hash = 58;
 	if (str.length === 0) return hash;
 
 	for (let i = 0; i < str.length; i++) {

@@ -62,7 +62,11 @@
 						class={`ui-tab ${selectedBatch === batch ? `${getGradientForString(batch)} ui-tab-active` : 'ui-tab-idle'}`}
 						onclick={() => (userSelectedBatch = batch)}
 					>
-						'{batch} Batch
+						{#if batch.endsWith('s')}
+							'{batch.slice(0, -1)} (Self Study)					  
+						{:else}
+							'{batch} Batch
+						{/if}
 					</button>
 				{/each}
 			</div>

@@ -5,13 +5,17 @@ import ME421 from '$lib/data/me421.json';
 import ME411 from '$lib/data/me411.json';
 import ME455 from '$lib/data/me455.json';
 import ME423 from '$lib/data/me423.json';
+import ME469 from '$lib/data/me469.json';
+import ME415 from '$lib/data/me415.json';
 
 export const papersCollection: PaperCollection = {
 	ME463,
 	ME421,
 	ME411,
 	ME455,
-	ME423
+	ME423,
+	ME469,
+	ME415
 };
 
 export function getCourseData(courseId: string) {
