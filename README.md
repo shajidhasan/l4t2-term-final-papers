@@ -24,6 +24,12 @@ Built by [sh4jid](https://sh4jid.me) for CUET ME students and anyone who might f
 
 | Course Code | Course Title          | Credits | Instructors                                      |
 | ----------- | --------------------- | ------- | ------------------------------------------------ |
+| **ME415**   | Automobile Engineering | 3      | Dr. M. A. M. Hossain, Dr. M. M. Rahman          |
+| **ME423**   | Aerodynamics          | 3       | Dr. M. M. Alam, Dr. P. Das                      |
+| **ME469**   | Operations Research   | 3       | M. A. Islam, R. M. Meraz                        |
+| **ME455**   | Mechatronics          | 3       | Dr. S. C. Banik, Dr. M. S. Rabbi                |
+| **ME411**   | Applied Thermodynamics | 3      | Dr. B. Salam, Dr. M. K. A. Rahman               |
+| **ME421**   | Fluid Machinery       | 3       | Dr. M. M. Alam, Dr. M. M. Roshid                |
 | **ME463**   | Industrial Management | 4       | Dr. M. S. Rabbi, Dr. A. S. M. Sayem, A. A. Mamun |
 
 ## Getting Started
